@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            var gelen = carManager.GetCars();
+            CarManager carManager = new CarManager(new EfCarDal());
 
-            var result = gelen.Where(p => p.ModelYear > 2005 && p.DailyPrice < 100000);
 
-            foreach (var item in result)
+            foreach (var item in carManager.GetCars())
             {
-                Console.WriteLine(item.ModelYear + " model, " + item.DailyPrice + " TL, " + item.Aciklama);
+                Console.WriteLine("{0} model {1}TL {2}", item.ModelYear , item.DailyPrice, item.Aciklama);
             }
+
         }
     }
 }
