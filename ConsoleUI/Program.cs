@@ -19,6 +19,7 @@ namespace ConsoleUI
                 Console.WriteLine("{0} model {1}TL {2}", item.ModelYear , item.DailyPrice, item.Aciklama);
             }
 
+
         }
     }
 }
