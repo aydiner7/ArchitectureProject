@@ -11,16 +11,18 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : ICarDal
     {
+        
+
         public void Add(Car entity)
         {
-            using (RentACarContext context = new RentACarContext())
-            {
-                // context ile entity nesnesini eşleştir.
-                // Diğer bir ismiyle referansı yakalamak.
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
+                using (RentACarContext context = new RentACarContext())
+                {
+                    // context ile entity nesnesini eşleştir.
+                    // Diğer bir ismiyle referansı yakalamak.
+                    var addedEntity = context.Entry(entity);
+                    addedEntity.State = EntityState.Added;
+                    context.SaveChanges();
+                }              
         }
 
         public void Delete(Car entity)
