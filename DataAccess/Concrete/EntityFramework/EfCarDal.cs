@@ -49,7 +49,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 return filter == null ? context.Set<Car>().ToList()
                                       : context.Set<Car>().Where(filter).ToList();
-            };
+            }
         }
 
         public void Update(Car entity)
