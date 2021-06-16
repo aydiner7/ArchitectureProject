@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +12,12 @@ namespace Entities.Concrete
         public int BrandId { get; set; }
 
         public int ColorId { get; set; }
+
+        public int CaseTypeId { get; set; }
+
+        public int FuelTypeId { get; set; }
+
+        public string ModelName { get; set; }
 
         public int ModelYear { get; set; }
 

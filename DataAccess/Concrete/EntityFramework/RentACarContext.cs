@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    class RentACarContext : DbContext
+    public class RentACarContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,5 +20,8 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Color> Colors { get; set; }
 
         public DbSet<CaseType> CaseTypes { get; set; }
+
+        public DbSet<FuelType> FuelTypes { get; set; }
+
     }
 }
