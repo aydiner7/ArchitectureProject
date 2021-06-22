@@ -13,7 +13,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
 
             //CaseTypeTest();
 
@@ -23,6 +23,70 @@ namespace ConsoleUI
 
             //FuelTypeTest();
 
+            //RentalTest();
+
+            //RentalTest2();
+
+            //UserTest();
+
+            //UserTest2();
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result1 = customerManager.Add(new Customer { CompanyName = "GariBANK", UserId=3});
+            Console.WriteLine(result1.Message);
+
+            var result2 = customerManager.GetAll();
+            if (result2.Success==true)
+            {
+                Console.WriteLine(result2.Message);
+                foreach (var item in result2.Data)
+                {
+                    Console.WriteLine(item.CompanyName);
+                }
+            }
+        }
+
+        private static void UserTest2()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.GetAll();
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.FirstName);
+                }
+            }
+        }
+
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.Add(new User { FirstName = "Egehan", LastName = "AYDINER", Email = "ege@hotmail.com", Password = "123" });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void RentalTest2()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.ReturnDate);
+                }
+            }
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now, ReturnDate=DateTime.Now});
+            Console.WriteLine(result.Message);
         }
 
         private static void FuelTypeTest()
@@ -39,12 +103,19 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal(), new CarValidationManager());
-            foreach (var item in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine("{0} - {1} - {2} - {3} - {4} - {5} - {6} - {7} - ", 
-                    item.BrandName, item.ModelName, item.ColorName, item.ModelYear, 
-                    item.CaseTypeName, item.FuelTypeName, item.DailyPrice, item.Aciklama);
+                Console.WriteLine(result.Message);
+
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine("{0} - {1} - {2} - {3} - {4} - {5} - {6} - {7} ",
+                        item.BrandName, item.ModelName, item.ColorName, item.ModelYear,
+                        item.CaseTypeName, item.FuelTypeName, item.DailyPrice, item.Aciklama);
+                }
             }
+            else Console.WriteLine(result.Message);
         }
 
         private static void CaseTypeTest()
