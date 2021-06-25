@@ -15,7 +15,12 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.ModelYear).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(1000);
             RuleFor(c => c.DailyPrice).GreaterThanOrEqualTo(10000).When(c => c.BrandId == 1);
+            //RuleFor(c => c.Aciklama).Must(WithStartA).WithMessage("Açıklama A ile başlamalıdır.");
         }
 
+        private bool WithStartA(string arg)
+        {
+            return arg.StartsWith("A");
+        }
     }
 }
