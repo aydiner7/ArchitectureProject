@@ -32,8 +32,8 @@ namespace ConsoleUI
             //UserTest2();
 
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            var result1 = customerManager.Add(new Customer { CompanyName = "GariBANK", UserId=3});
-            Console.WriteLine(result1.Message);
+            //var result1 = customerManager.Add(new Customer { CompanyName = "GariBANK", UserId=3});
+            //Console.WriteLine(result1.Message);
 
             var result2 = customerManager.GetAll();
             if (result2.Success==true)
@@ -102,7 +102,7 @@ namespace ConsoleUI
 
         private static void CarTest()
         {
-            CarManager carManager = new CarManager(new EfCarDal(), new CarValidationManager());
+            CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
             if (result.Success == true)
             {
