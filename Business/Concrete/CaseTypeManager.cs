@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,9 +19,16 @@ namespace Business.Concrete
             _caseTypeDal = caseTypeDal;
         }
 
-        public List<CaseType> GetAll()
+        [ValidationAspect(typeof(CaseTypeValidator))]
+        public IResult Add(CaseType caseType)
         {
-            return _caseTypeDal.GetAll();
+            _caseTypeDal.Add(caseType);
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<CaseType>> GetAll()
+        {
+            return new SuccessDataResult<List<CaseType>>(_caseTypeDal.GetAll());
         }
     }
 }

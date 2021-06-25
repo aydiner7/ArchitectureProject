@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,15 +19,16 @@ namespace Business.Concrete
             _fuelTypeDal = fuelTypeDal;
         }
 
-        public List<FuelType> GetAll()
-        {
-            return _fuelTypeDal.GetAll();
-        }
-
-        public void Add(FuelType fuelType)
+        [ValidationAspect(typeof(FuelTypeValidator))]
+        public IResult Add(FuelType fuelType)
         {
             _fuelTypeDal.Add(fuelType);
-            Console.WriteLine(fuelType.FuelTypeName+" eklendi.");
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<FuelType>> GetAll()
+        {
+            return new SuccessDataResult<List<FuelType>>(_fuelTypeDal.GetAll());
         }
     }
 }

@@ -94,7 +94,7 @@ namespace ConsoleUI
             FuelTypeManager fuelTypeManager = new FuelTypeManager(new EfFuelTypeDal());
             fuelTypeManager.Add(new FuelType { FuelTypeName = "Elektrik" });
             var result = fuelTypeManager.GetAll();
-            foreach (var item in result)
+            foreach (var item in result.Data)
             {
                 Console.WriteLine("{0} - {1}", item.FuelTypeId, item.FuelTypeName);
             }
@@ -121,7 +121,8 @@ namespace ConsoleUI
         private static void CaseTypeTest()
         {
             CaseTypeManager caseTypeManager = new CaseTypeManager(new EfCaseTypeDal());
-            foreach (var item in caseTypeManager.GetAll())
+            var result = caseTypeManager.GetAll();
+            foreach (var item in result.Data)
             {
                 Console.WriteLine("{0} / {1}", item.CaseTypeId, item.CaseTypeName);
             }
@@ -130,7 +131,8 @@ namespace ConsoleUI
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var item in brandManager.GetAll())
+            var result = brandManager.GetAll();
+            foreach (var item in result.Data)
             {
                 Console.WriteLine("{0} / {1}", item.BrandId, item.BrandName);
             }
@@ -139,7 +141,8 @@ namespace ConsoleUI
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var item in colorManager.GetAll())
+            var result = colorManager.GetAll();
+            foreach (var item in result.Data)
             {
                 Console.WriteLine("{0} / {1}", item.ColorId, item.ColorName);
             }
