@@ -5,6 +5,7 @@ using Core.Aspects.AutoFac.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,6 +40,11 @@ namespace Business.Concrete
         public IDataResult<List<Customer>> GetByCustomerId(int CustomerId)
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.CustomerId == CustomerId));
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails());
         }
     }
 }
